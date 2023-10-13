@@ -1,0 +1,6 @@
+.bsp
+.metals
+.scala-build
+smithy_generated
+META-INF
+app.App.json
