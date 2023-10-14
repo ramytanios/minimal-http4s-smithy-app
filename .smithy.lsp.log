@@ -1,0 +1,18 @@
+[22:48:08] Created a temporary folder for file contents /var/folders/c1/_yq6mb4920n1zs48cwqg_zmr0000gn/T/smithy-lsp7413386472048635485
+[22:48:08] Recreating project from /Users/ramytanios/repos/minimal-http4s-smithy-app
+[22:48:08] Imports from config: [/Users/ramytanios/repos/minimal-http4s-smithy-app] will be resolved against root /Users/ramytanios/repos/minimal-http4s-smithy-app
+[22:48:08] Discovered smithy files: [/Users/ramytanios/repos/minimal-http4s-smithy-app/app.smithy]
+[22:48:08] Downloading external dependencies for SmithyBuildExtensions(repositories = [], artifacts = [], imports = [])
+[22:48:08] Downloaded external jars: []
+[22:48:08] [WARNING] -: Use statement refers to undefined shape: alloy#simpleRestJson | Model /Users/ramytanios/repos/minimal-http4s-smithy-app/app.smithy:5:5
+[22:48:08] [WARNING] app#App: Unable to resolve trait `alloy#simpleRestJson`. If this is a custom trait, then it must be defined before it can be used in a model. | Model /Users/ramytanios/repos/minimal-http4s-smithy-app/app.smithy:7:1
+[22:48:08] Recreating project from /Users/ramytanios/repos/minimal-http4s-smithy-app
+[22:48:08] Imports from config: [/Users/ramytanios/repos/minimal-http4s-smithy-app] will be resolved against root /Users/ramytanios/repos/minimal-http4s-smithy-app
+[22:48:08] Discovered smithy files: [/Users/ramytanios/repos/minimal-http4s-smithy-app/app.smithy]
+[22:48:08] Downloading external dependencies for SmithyBuildExtensions(repositories = [], artifacts = [], imports = [])
+[22:48:08] Downloaded external jars: []
+[22:48:08] [WARNING] -: Use statement refers to undefined shape: alloy#simpleRestJson | Model /Users/ramytanios/repos/minimal-http4s-smithy-app/app.smithy:5:5
+[22:48:08] [WARNING] app#App: Unable to resolve trait `alloy#simpleRestJson`. If this is a custom trait, then it must be defined before it can be used in a model. | Model /Users/ramytanios/repos/minimal-http4s-smithy-app/app.smithy:7:1
+[22:48:08] [WARNING] -: Use statement refers to undefined shape: alloy#simpleRestJson | Model /Users/ramytanios/repos/minimal-http4s-smithy-app/app.smithy:5:5
+[22:48:08] [WARNING] app#App: Unable to resolve trait `alloy#simpleRestJson`. If this is a custom trait, then it must be defined before it can be used in a model. | Model /Users/ramytanios/repos/minimal-http4s-smithy-app/app.smithy:7:1
+[22:48:08] Recompiling /Users/ramytanios/repos/minimal-http4s-smithy-app/app.smithy (with temporary content Optional.empty) raised 2  diagnostics
