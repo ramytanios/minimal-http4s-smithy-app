@@ -1,5 +1,8 @@
-smithy-gen:
+gen:
 	smithy4s generate app.smithy --output smithy_generated
+
+dump:
+	smithy4s dump-model
 
 clean:
 	rm -rf .bsp/ .metals/ smithy_generated/ app.App.json META-INF/

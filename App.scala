@@ -11,12 +11,27 @@ import cats.effect.implicits.*
 import cats.syntax.all.*
 import com.comcast.ip4s.*
 import smithy4s.http4s.SimpleRestJsonBuilder
+import org.http4s.Request
+import org.http4s.Uri
+import cats.effect.Concurrent
 
 object App extends Simple {
 
-  class AppImpl[F[_]](client: Client[F]) extends App[F] {
-    override def getRandomCities(): F[RandomCities] = ???
-    override def getPopuationOfCity(city: City): F[GetPopulationOutput] = ???
+  class AppImpl[F[_]](client: Client[F])(using F: Concurrent[F])
+      extends App[F] {
+
+    def getFxRate(ccy0: Currency, ccy1: Currency): F[GetFxRateOutput] =
+      F.fromEither(
+        Uri.fromString(
+          s"https://api.frankfurter.app/latest?from=$ccy0&to=$ccy1"
+        )
+      ).flatMap(uri => client.expect[Map[String, Double]](uri))
+        .flatMap(rp =>
+          F.fromOption(
+            rp.values.toList.headOption.map(GetFxRateOutput(_)),
+            new RuntimeException(s"Unable to get rate for $ccy0$ccy1")
+          )
+        )
   }
 
   def runImpl[F[_]: Network](using F: Async[F]): F[Unit] =

@@ -13,10 +13,10 @@ string Currency
 
 structure GetFxRateInput {
   @required
-  currency0: Currency
+  ccy0: Currency
 
   @required
-  currency1: Currency
+  ccy1: Currency
 }
 
 structure GetFxRateOutput {
