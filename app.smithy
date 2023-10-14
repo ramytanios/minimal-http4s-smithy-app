@@ -6,44 +6,27 @@ use alloy#simpleRestJson
 @simpleRestJson
 service App {
     version: "0.0.1",
-    operations: [GetRandomCities, GetPopuationOfCity]
+    operations: [GetFxRate]
 }
 
-structure City {
+string Currency
+
+structure GetFxRateInput {
   @required
-  name: String, 
+  currency0: Currency
 
   @required
-  country: String
+  currency1: Currency
 }
 
-list Cities {
-  member: City
-}
-
-structure GetPopulationInput {
+structure GetFxRateOutput {
   @required
-  city: City
+  rate: Double
 }
 
-structure GetPopulationOutput {
-  @required
-  population: Double
-}
-
-structure RandomCities {
-  @required
-  cities: Cities
-}
-
-@http(method: "GET", uri: "/api/cities", code: 200)
-operation GetRandomCities {
-  output: RandomCities
-}
-
-@http(method: "POST", uri: "/api/population", code: 200)
-operation GetPopuationOfCity {
-  input: GetPopulationInput
-  output: GetPopulationOutput
+@http(method: "POST", uri: "/api/fxrate", code: 200)
+operation GetFxRate {
+  input: GetFxRateInput
+  output: GetFxRateOutput
 }
   
