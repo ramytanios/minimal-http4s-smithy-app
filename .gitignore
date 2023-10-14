@@ -4,3 +4,4 @@
 smithy_generated
 META-INF
 app.App.json
+.smithy.lsp.log
