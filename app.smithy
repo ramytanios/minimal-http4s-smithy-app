@@ -11,7 +11,7 @@ service App {
 
 string Currency
 
-structure GetFxRateInput {
+structure CurrencyPair {
   @required
   ccy0: Currency
 
@@ -19,14 +19,14 @@ structure GetFxRateInput {
   ccy1: Currency
 }
 
-structure GetFxRateOutput {
+structure FxRate {
   @required
   rate: Double
 }
 
 @http(method: "POST", uri: "/api/fxrate", code: 200)
 operation GetFxRate {
-  input: GetFxRateInput
-  output: GetFxRateOutput
+  input: CurrencyPair
+  output: FxRate
 }
   
