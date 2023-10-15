@@ -12,10 +12,14 @@ service App {
 
 string Currency
 
+@documentation("FOR/DOM currency pair")
 structure CurrencyPair {
     @required
-    ccy0: Currency
+    @documentation("Foreign currency")
+    ccy0: Currency,
+
     @required
+    @documentation("Domestic currency")
     ccy1: Currency
 }
 

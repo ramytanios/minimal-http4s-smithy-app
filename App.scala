@@ -14,13 +14,17 @@ import smithy4s.http4s.SimpleRestJsonBuilder
 import org.http4s.Request
 import org.http4s.Uri
 import cats.effect.Concurrent
+import org.http4s.EntityDecoder
 
 object App extends Simple {
 
   class AppImpl[F[_]](client: Client[F])(using F: Concurrent[F])
       extends App[F] {
 
-    def getFxRate(ccy0: Currency, ccy1: Currency): F[GetFxRateOutput] =
+    implicit val dec: EntityDecoder[F, Map[String, Double]] = 
+      EntityDecoder
+
+    def getFxRate(ccy0: Currency, ccy1: Currency): F[FxRate] =
       F.fromEither(
         Uri.fromString(
           s"https://api.frankfurter.app/latest?from=$ccy0&to=$ccy1"
@@ -28,7 +32,7 @@ object App extends Simple {
       ).flatMap(uri => client.expect[Map[String, Double]](uri))
         .flatMap(rp =>
           F.fromOption(
-            rp.values.toList.headOption.map(GetFxRateOutput(_)),
+            rp.values.toList.headOption.map(FxRate(_)),
             new RuntimeException(s"Unable to get rate for $ccy0$ccy1")
           )
         )
