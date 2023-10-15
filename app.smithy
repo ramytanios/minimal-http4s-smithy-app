@@ -16,8 +16,7 @@ string Currency
 structure CurrencyPair {
     @required
     @documentation("Foreign currency")
-    ccy0: Currency,
-
+    ccy0: Currency
     @required
     @documentation("Domestic currency")
     ccy1: Currency
