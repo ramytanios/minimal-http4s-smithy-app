@@ -1,16 +1,21 @@
 $version: "2"
 
-namespace app
+namespace exampleservice
 
 use alloy#simpleRestJson
 
 @simpleRestJson
-service App {
+service SimpleService {
     version: "0.0.1"
-    operations: [GetFxRate]
+    operations: [ImAlive, GetFxRate]
 }
 
 string Currency
+
+structure ImAliveResp {
+    @required
+    resp: String
+}
 
 @documentation("FOR/DOM currency pair")
 structure CurrencyPair {
@@ -25,6 +30,11 @@ structure CurrencyPair {
 structure FxRate {
     @required
     rate: Double
+}
+
+@http(method: "GET", uri: "/api/alive", code: 200)
+operation ImAlive {
+    output: ImAliveResp
 }
 
 @http(method: "POST", uri: "/api/fxrate", code: 200)

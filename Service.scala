@@ -1,4 +1,4 @@
-package app
+package exampleservice
 
 import org.http4s.client.Client
 import cats.effect.IOApp.Simple
@@ -7,24 +7,24 @@ import cats.effect.kernel.Async
 import org.http4s.ember.client.EmberClientBuilder
 import fs2.io.net.Network
 import org.http4s.ember.server.EmberServerBuilder
-import cats.effect.implicits.*
 import cats.syntax.all.*
 import com.comcast.ip4s.*
 import smithy4s.http4s.SimpleRestJsonBuilder
-import org.http4s.Request
 import org.http4s.Uri
 import cats.effect.Concurrent
 import org.http4s.EntityDecoder
 import org.http4s.circe._
 
-object App extends Simple {
+object Service extends Simple {
 
   class AppImpl[F[_]](client: Client[F])(using F: Concurrent[F])
-      extends App[F] {
+      extends SimpleService[F] {
 
     implicit val dec: EntityDecoder[F, Map[String, Double]] = jsonOf
 
-    def getFxRate(ccy0: Currency, ccy1: Currency): F[FxRate] =
+    override def imAlive(): F[ImAliveResp] = F.pure(ImAliveResp("I am alive"))
+
+    override def getFxRate(ccy0: Currency, ccy1: Currency): F[FxRate] =
       F.fromEither(
         Uri.fromString(
           s"https://api.frankfurter.app/latest?from=$ccy0&to=$ccy1"

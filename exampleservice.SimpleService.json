@@ -1,0 +1,98 @@
+{
+    "openapi": "3.0.2",
+    "info": {
+        "title": "SimpleService",
+        "version": "0.0.1"
+    },
+    "paths": {
+        "/api/alive": {
+            "get": {
+                "operationId": "ImAlive",
+                "responses": {
+                    "200": {
+                        "description": "ImAlive 200 response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ImAliveResponseContent"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/fxrate": {
+            "post": {
+                "operationId": "GetFxRate",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/GetFxRateRequestContent"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "GetFxRate 200 response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetFxRateResponseContent"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "GetFxRateRequestContent": {
+                "type": "object",
+                "description": "FOR/DOM currency pair",
+                "properties": {
+                    "ccy0": {
+                        "type": "string",
+                        "description": "Foreign currency"
+                    },
+                    "ccy1": {
+                        "type": "string",
+                        "description": "Domestic currency"
+                    }
+                },
+                "required": [
+                    "ccy0",
+                    "ccy1"
+                ]
+            },
+            "GetFxRateResponseContent": {
+                "type": "object",
+                "properties": {
+                    "rate": {
+                        "type": "number",
+                        "format": "double"
+                    }
+                },
+                "required": [
+                    "rate"
+                ]
+            },
+            "ImAliveResponseContent": {
+                "type": "object",
+                "properties": {
+                    "resp": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "resp"
+                ]
+            }
+        }
+    }
+}
