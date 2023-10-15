@@ -15,14 +15,14 @@ import org.http4s.Request
 import org.http4s.Uri
 import cats.effect.Concurrent
 import org.http4s.EntityDecoder
+import org.http4s.circe._
 
 object App extends Simple {
 
   class AppImpl[F[_]](client: Client[F])(using F: Concurrent[F])
       extends App[F] {
 
-    implicit val dec: EntityDecoder[F, Map[String, Double]] = 
-      EntityDecoder
+    implicit val dec: EntityDecoder[F, Map[String, Double]] = jsonOf
 
     def getFxRate(ccy0: Currency, ccy1: Currency): F[FxRate] =
       F.fromEither(
