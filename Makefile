@@ -1,20 +1,27 @@
+clean:
+	git clean -Xdf
+
 gen:
-	smithy4s generate service.smithy --output smithy_generated
+	make clean
+	smithy4s generate service.smithy \
+		--output src_generated \
+		--resource-output resource_generated
 
 dump:
 	smithy4s dump-model
 
-clean:
-	rm -rf .bsp/ .metals/ smithy_generated/ app.App.json META-INF/
+compile: 
+	make gen
+	scala-cli --power compile *.scala
 
-runOnly: 
-	scala-cli run .
+compile-watch:
+	make gen 
+	scala-cli --power compile --watch *.scala
 
 package:
 	scala-cli --power package \
-		Service.scala \
-		project.scala \
-		smithy_generated/\
+		*.scala \
+		src_generated/ \
 		-o srv \
 		-f
 

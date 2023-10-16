@@ -1,7 +1,6 @@
-.bsp
-.metals
-.scala-build
-smithy_generated
-META-INF
-app.App.json
+.bsp/
+.metals/
+**/.scala-build
+src_generated/
+resource_generated/
 .smithy.lsp.log
